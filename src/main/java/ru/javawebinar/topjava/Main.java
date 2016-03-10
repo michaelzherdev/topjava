@@ -1,4 +1,4 @@
-package main.java.ru.javawebinar.topjava;
+package ru.javawebinar.topjava;
 
 /**
  * User: gkislin
