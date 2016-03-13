@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * GKislin
@@ -36,7 +36,7 @@ public class MockUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> getAll() {
+    public Collection<User> getAll() {
         LOG.info("getAll");
         return Collections.emptyList();
     }
