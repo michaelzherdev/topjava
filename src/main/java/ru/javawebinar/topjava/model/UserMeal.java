@@ -10,7 +10,7 @@ public class UserMeal extends BaseEntity {
 
     private final LocalDateTime dateTime;
 
-    private final String description;
+    private  String description;
 
     private final int calories;
 
@@ -25,12 +25,23 @@ public class UserMeal extends BaseEntity {
         this.calories = calories;
     }
 
+    public UserMeal(UserMeal userMeal) {
+        super(userMeal.getId());
+        this.dateTime = userMeal.getDateTime();
+        this.description = userMeal.getDescription();
+        this.calories = userMeal.getCalories();
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getCalories() {
@@ -46,4 +57,5 @@ public class UserMeal extends BaseEntity {
                 ", calories=" + calories +
                 '}';
     }
+
 }
