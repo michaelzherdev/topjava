@@ -29,16 +29,11 @@ import static ru.javawebinar.topjava.UserTestData.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 @ActiveProfiles(Profiles.POSTGRES)
-public class UserServiceTest {
+abstract public class UserServiceTest extends DataBaseTest {
 
     @Autowired
     protected UserService service;
 
-    @Before
-    public void setUp() throws Exception {
-        service.evictCache();
-    }
-        
     @Test
     public void testSave() throws Exception {
         TestUser tu = new TestUser(null, "New", "new@gmail.com", "newPass", 1555, false, Collections.singleton(Role.ROLE_USER));
