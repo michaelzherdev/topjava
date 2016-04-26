@@ -59,4 +59,77 @@
 </section>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript" src="webjars/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="webjars/datetimepicker/2.5.1/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="webjars/datatables/1.10.11/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="webjars/noty/2.3.8/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+<script type="text/javascript" src="resources/js/datatablesUtil.js"></script>
+<script type="text/javascript">
+
+    var ajaxUrl = 'ajax/profile/meals/';
+
+    var oTable_datatable;
+    var oTable_datatable_params;
+
+    function updateTable() {
+        $.ajax({
+            type: "POST",
+            url: ajaxUrl + 'filter',
+            data: $('filter').serialize(),
+            success: function (data) {
+                updateTableByData(data);
+            }
+        });
+
+        return false;
+    }
+
+    function updateTableByData(data) {
+        oTable_datatable.fnClearTable();
+        $.each(data, function(key, item){
+            oTable_datatable.fnAddData(item);
+        });
+        oTable_datatable.fnDraw();
+    }
+
+    $(function () {
+        datatableApi = $('#datatable').dataTable({
+            "bPaginate": false,
+            "bInfo": false,
+            "aoColumns": [
+                {
+                    "mData": "name"
+                },
+                {
+                    "mData": "email"
+                },
+                {
+                    "mData": "roles"
+                },
+                {
+                    "mData": "enabled"
+                },
+                {
+                    "mData": "registered"
+                },
+                {
+                    "sDefaultContent": "",
+                    "bSortable": false
+                },
+                {
+                    "sDefaultContent": "",
+                    "bSortable": false
+                }
+            ],
+            "aaSorting": [
+                [
+                    0,
+                    "asc"
+                ]
+            ]
+        });
+        makeEditable();
+    });
+</script>
 </html>

@@ -148,5 +148,29 @@
         });
         makeEditable();
     });
+
+    function enable(chkbox) {
+        var enabled = chkbox.is(":checked");
+        chkbox.parent().parent().css("text-decoration", enabled ? "none" : "line-through");
+        $.ajax()({
+            type: "POST",
+            url: ajaxUrl + chkbox.attr('id'),
+            data: 'enabled=' + enabled,
+            success: function (data) {
+                updateTableByData(data);
+            }
+        });
+    }
+
+    function init(){
+        $(':checkbox').each(function() {
+            if (!$(this).is(":checked")) {
+            }
+            $(this).parent().parent().css("text-decoration", "line-through");
+
+        });
+    }
 </script>
+
+
 </html>
