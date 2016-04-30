@@ -2,8 +2,12 @@ package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.TestUtil.ToStringModelMatcher;
 import ru.javawebinar.topjava.matcher.ModelMatcher;
+import ru.javawebinar.topjava.model.Role;
+import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.to.UserMealWithExceed;
+import ru.javawebinar.topjava.to.UserTo;
+import ru.javawebinar.topjava.util.UserUtil;
 
 import java.time.Month;
 import java.util.Arrays;
@@ -20,6 +24,9 @@ public class MealTestData {
 
     public static final ModelMatcher<UserMeal, String> MATCHER = new ToStringModelMatcher<>(UserMeal.class);
     public static final ModelMatcher<UserMealWithExceed, String> MATCHER_WITH_EXCEED = new ToStringModelMatcher<>(UserMealWithExceed.class);
+
+    public static final User USER = new User(100000, "User", "user@yandex.ru", "password", Role.ROLE_USER);
+    public static final User ADMIN = new User(100001, "Admin", "admin@yandex.ru", "admin", Role.ROLE_USER);
 
     public static final int MEAL1_ID = START_SEQ + 2;
     public static final int ADMIN_MEAL_ID = START_SEQ + 8;

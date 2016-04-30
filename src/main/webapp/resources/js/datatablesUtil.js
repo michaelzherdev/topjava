@@ -3,6 +3,12 @@ var form;
 function makeEditable() {
     form = $('#detailsForm');
 
+    $('#add').click(function() {
+        form.find(":input").val("");
+        $('#id').val(0);
+        $('#editRow').modal;
+    });
+
     form.submit(function () {
         save();
         return false;
