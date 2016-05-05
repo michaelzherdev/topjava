@@ -18,6 +18,13 @@
                     <input type="submit" class="btn btn-primary" value="<fmt:message key="app.logout"/>">
                 </sec:authorize>
             </form:form>
+            <p class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${pageContext.response.locale}</a>
+                <ui class="dropdown-menu">
+                    <li><a href="?lang=en">English</a> </li>
+                    <li><a href="?lang=ru">Русский</a> </li>
+                </ui>
+            </p>
         </div>
     </div>
 </div>

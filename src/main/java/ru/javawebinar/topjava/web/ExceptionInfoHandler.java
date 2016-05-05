@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import ru.javawebinar.topjava.util.exception.ErrorInfo;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
+import ru.javawebinar.topjava.util.exception.ValidationException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,6 +35,14 @@ public interface ExceptionInfoHandler {
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE + 1)
     default ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
+        return logAndGetErrorInfo(req, e);
+    }
+
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(ValidationException.class)
+    @ResponseBody
+    @Order(Ordered.HIGHEST_PRECEDENCE + 2)
+    default ErrorInfo validationException(HttpServletRequest req, DataIntegrityViolationException e) {
         return logAndGetErrorInfo(req, e);
     }
 
